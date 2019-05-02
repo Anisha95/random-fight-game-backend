@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 const random_name = require('node-random-name');
 const Players = require('../models/players');
+const Fights = require('../models/fight')
 const random = require('math-random');
 const floor = require('math-floor');
-const  activ = 0;
+
+
 
 // GET home page.
 
@@ -43,10 +45,24 @@ router.get('/fight', function(req, res) {
         x.active = false;
         Players.findByIdAndUpdate({"_id" : x._id}, { $set: {"active" : false}},  function(err, user){});
         Players.findByIdAndUpdate({"_id" : y._id}, { $inc: { score: 30} },  function(err, user){});
+        var fight = new Fights();
+        fight.player_1_id = x._id;
+        fight.player_1_name = x.name;
+        fight.player_2_id = y._id;
+        fight.player_2_name = y.name;
+        fight.winning_player_id = y._id;
+        fight.created_at = Date.now();
+        fight.save();
         res.send({
             players: b,
             loser: x
         });
+    })
+});
+
+router.get('/fight-logs', function(req, res) {
+    Fights.find().then(function (fight) {
+        res.send(fight);
     })
 });
 
