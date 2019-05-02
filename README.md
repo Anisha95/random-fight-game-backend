@@ -1,4 +1,4 @@
-# random-fight-game-backend
+# Random-Fight-Game-Backend
 Backend Development of a fight game between two random player fetched from the database .
 ---------------------------------------------------------------------------------------
 1. Backend Development -> Node.js(v11.13.0) on Express Framework npm version 6.9.0
