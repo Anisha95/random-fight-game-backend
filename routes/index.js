@@ -39,14 +39,10 @@ router.get('/fight', function(req, res) {
      Players.aggregate([ {$match : {active : true}}, {$sample : {size : 2} }]).then(function (players) {
 
         var b  = (players);
-        console.log(b);
         var c = floor(random());
-         console.log('Hello 1');
         var d = 1-c;
         var x = b[c];
-        console.log('Hello 2');
         var y = b[d];
-        console.log('Hello 3');
         x.active = false;
         //console.log(y);
         if(y == undefined){
@@ -55,10 +51,6 @@ router.get('/fight', function(req, res) {
             return false;
         }
         Players.findByIdAndUpdate({"_id" : x._id}, { $set: {"active" : false}},  function(err, user){
-            // if(err){
-            //     res.send('You have only 1 player left!');
-            //     throw err;
-            // }
         });
         Players.findByIdAndUpdate({"_id" : y._id}, { $inc: { score: 30} },  function(err, user){});
         var fight = new Fights();
@@ -76,6 +68,10 @@ router.get('/fight', function(req, res) {
         });
     })
 });
+
+
+
+// to get all the records of the fights till date..
 
 router.get('/fight-logs', function(req, res) {
     Fights.find().then(function (fight) {

@@ -2,7 +2,7 @@ const  mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 'use strict';
 
-// create Fight  Schema & Model for the game! :)
+// create Fight Schema & Model for the game! :)
 
 const FightSchema = new Schema({
     player_1_id : String,

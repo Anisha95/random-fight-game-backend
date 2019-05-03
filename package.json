@@ -20,6 +20,7 @@
     "math-floor": "^1.0.1",
     "math-random": "^1.0.4",
     "mathjs": "^5.9.0",
+    "migrate-mongo": "^5.0.1",
     "mongodb": "^3.2.3",
     "mongoose": "^5.5.2",
     "mongoose-date-format": "^1.2.0",
